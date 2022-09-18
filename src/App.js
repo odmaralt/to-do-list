@@ -17,7 +17,6 @@ function App() {
   };
   const handleFilter = () => {
     const filtered = toDoList.filter((task) => {
-    
       return !task.complete;
     });
 
@@ -48,7 +47,7 @@ function App() {
             <TodoForm addTask={addTask} />
 
             <img
-            alt=""
+              alt=""
               id="trashIcon"
               onClick={handleFilter}
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAAY0lEQVRIiWNgGAWDGBxnYGD4j4aPUcvww1gMJxcfxmYBE7Vcigf8p4MdQwAw4pGjVhBhtYMecYwVjFo8avGoxaMWj1o8avHQsvgJFcx/TI4mT6hGcht5jxgYGDwodPgoGMIAAIf9LS9I+wcVAAAAAElFTkSuQmCC"
@@ -65,7 +64,11 @@ function App() {
       <div id="deleted">
         <p id="deletedTasks">Deleted Tasks</p>
         {deleteTasks.map((task) => {
-          return <p style={{paddingTop: "10px", paddingLeft: "20px"}}>{task.task}</p>;
+          return (
+            <p style={{ paddingTop: "10px", paddingLeft: "20px" }}>
+              {task.task}
+            </p>
+          );
         })}
       </div>
     </div>
