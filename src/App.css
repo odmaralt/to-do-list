@@ -98,3 +98,15 @@ body {
   text-align: center;
   text-decoration: underline;
 }
+#errormsg {
+  display: none;
+}
+@media screen and (max-width: 850px) {
+  #fullPage {
+    display: none;
+  }
+  #errormsg {
+    display: flex;
+    font-family: sans-serif;
+  }
+}
