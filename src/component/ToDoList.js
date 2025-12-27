@@ -1,21 +1,23 @@
 import React from "react";
-import ToDo from "./ToDo";
-const ToDoList = (props) => {
-  const { toDoList, handleToggle, handleFilter } = props;
-
+function ToDoList({ toDoList, handleToggle }) {
   return (
-    <div>
-      {toDoList.map((todo) => {
-        return (
-          <ToDo
-            key={todo.id}
-            todo={todo}
-            handleToggle={handleToggle}
-            handleFilter={handleFilter}
-          />
-        );
-      })}
+    <div id="allTasks">
+      {toDoList.map((task) => (
+        <div
+        id="tasksDiv"
+          key={task.id}
+          onClick={() => handleToggle(task.id)}
+          style={{
+            overflow:"scroll",
+            paddingBottom: "8px",
+            textDecoration: task.complete ? "line-through" : "none",
+            cursor: "pointer", // Add cursor style to indicate clickability
+          }}
+        >
+          {task.task}
+        </div>
+      ))}
     </div>
   );
-};
+}
 export default ToDoList;

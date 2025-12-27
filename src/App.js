@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import data from "./data.json";
 import "./App.css";
 import ToDoList from "./component/ToDoList";
 import TodoForm from "./component/TodoForm";
 
+
 function App() {
-  const [toDoList, setToDoList] = useState(data);
-  const [deleteTasks, setDeletedTasks] = useState([]);
+  const [toDoList, setToDoList] = useState(() => {
+    const saved = localStorage.getItem("toDoList");
+    return saved ? JSON.parse(saved) : data;
+  });
+  
+  const [deleteTasks, setDeletedTasks] = useState(() => {
+    const saved = localStorage.getItem("deletedTasks");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("toDoList", JSON.stringify(toDoList));
+  }, [toDoList]);
+  
+  useEffect(() => {
+    localStorage.setItem("deletedTasks", JSON.stringify(deleteTasks));
+  }, [deleteTasks]);
+  
   const handleToggle = (id) => {
     const mapped = toDoList.map((task) => {
       return task.id === Number(id)
@@ -16,13 +33,16 @@ function App() {
     setToDoList(mapped);
   };
   const handleFilter = () => {
-    const filtered = toDoList.filter((task) => {
-      return !task.complete;
-    });
+    // check if there is at least one completed task
+    const hasCompletedTask = toDoList.some(task => task.complete);
 
-    const deletedTask = toDoList.find((task) => {
-      return task.complete;
-    });
+    if (!hasCompletedTask) {
+      return; // do nothing
+    }
+
+    const filtered = toDoList.filter(task => !task.complete);
+    const deletedTask = toDoList.find(task => task.complete);
+
     setDeletedTasks([...deleteTasks, deletedTask]);
     setToDoList(filtered);
   };
@@ -33,11 +53,13 @@ function App() {
       { id: toDoList.length + 1, task: userInput, complete: false },
     ];
     setToDoList(copy);
-  };
+  
+  
+  }; 
 
   return (
     <div>
-      <h1 id="errormsg">This site can only be viewed on desktop</h1>
+      {/* <h1 id="errormsg">This site can only be viewed on desktop</h1> */}
       <div id="fullPage">
         <div id="full" className="App">
           {" "}
@@ -65,13 +87,25 @@ function App() {
         </div>
         <div id="deleted">
           <p id="deletedTasks">Deleted Tasks</p>
-          {deleteTasks.map((task) => {
-            return (
-              <p style={{ paddingTop: "10px", paddingLeft: "20px" }}>
-                {task.task}
-              </p>
-            );
-          })}
+          <div style={{ overflow: "scroll", height: "10vh" }}>
+
+            {deleteTasks.map((task) => {
+              return (
+                <p
+                  id="deletedTasksDiv"
+                  key={task.id}
+                  style={{
+                    paddingTop: "10px",
+                    textAlign: "center",
+                    overflow: "scroll",
+                    textDecoration: task.complete ? "line-through" : "none",
+                  }}
+                >
+                  {task.task}
+                </p>
+              );
+            })}          </div>
+
         </div>
       </div>
     </div>

@@ -1,66 +1,105 @@
 * {
   margin: 0;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 body {
-  background-color: rgb(255, 248, 248);
+  background-image: linear-gradient(100deg, #253846, #171a1d);
+  color: #dbe4f0;
+  font-family: "DM Sans", sans-serif;
+  height: 100vh;
 }
-#navBar {
-  background-color: rgb(255, 166, 166);
-}
+
 #title {
-  color: white;
-  padding: 25px;
-  display: flex;
-  font-size: 25px;
-  justify-content: center;
+  font-size: 48px;
+  font-weight: 700;
+  padding: 10px 0;
+  text-align: center;
 }
+
 #full {
-  width: 40%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: rgb(255, 255, 255);
-  height: 75vh;
-  margin-top: 5%;
-  border: 1px solid rgb(255, 228, 228);
-}
-.items {
-  padding: 0px 25px;
-  margin-left: 10%;
-  display: flex;
-  justify-content: space-evenly;
   align-items: center;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  margin: 5% auto;
+  padding: 20px;
 }
+
+.items {
+  font-size: 18px;
+  /* overflow: scroll; */
+  padding-bottom: 8px;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
 #trashIcon {
-  padding: 12px 30px;
-  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-filter: invert();
+  filter: invert();
+  height: 36px;
+  padding-left: 10px;
+  transition: background-color .3s;
+}
+
+#trashIcon:hover {
+  height: 38px;
+  padding-left: 8px;
+
 }
 
 #new {
+  align-items: center;
   display: flex;
   justify-content: center;
-  padding: 20px;
+  margin-top: 20px;
   text-align: center;
-  align-items: center;
 }
+
 #newTask {
+  background-color: #4857653a;
+  border: none;
+  border-bottom-left-radius: 100px;
+  border-top-left-radius: 100px;
+  color: #dbe4f0;
+  flex: 1 1;
+  font-size: 16px;
   padding: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  margin-right: 10px;
-  margin-left: 35px;
-  border-radius: 3px;
+  transition: border-color .3s;
+  width: 300px;
+}
+
+#tasks {
+  display: flex;
+  font-size: 24px;
+  font-weight: 600;
+  margin-left: auto;
+  margin-top: 30px;
+  padding-bottom: 10px;
 }
 
 #addButton {
-  width: 100px;
-  color: rgb(255, 255, 255);
-  border-radius: 3px;
+  background-color: #242e37;
   border: none;
-  height: 44px;
-  background-color: rgb(255, 166, 166);
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  color: #dbe4f0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  transition: background-color .3s;
 }
+
+#addButton:hover {
+  background-color: #dbe4f0;
+  color: #242e37;
+
+}
+
 #newTask:focus {
   outline: none !important;
 }
@@ -70,43 +109,71 @@ body {
 }
 
 .todo {
-  margin-left: 80px;
-  font-size: 20px;
-  display: flex;
-  padding-bottom: 15px;
+  font-size: 18px;
+  padding-bottom: 8px;
+  text-decoration: none;
+  cursor: pointer;
 }
+
+#tasksDiv {
+  font-size: 18px;
+}
+
+#tasksDiv:hover {
+  font-size: 18.5px;
+}
+
 #deleted {
-  width: 40%;
-  margin-left: auto;
-  height: 60px;
-  margin-right: auto;
-  background-color: rgb(255, 255, 255);
-  overflow: scroll;
+  border-radius: 5px;
   font-size: 14px;
-  border: 1px solid rgb(255, 228, 228);
-}
-#tasks {
-  margin-left: 80px;
-  font-size: 20px;
-  display: flex;
-  padding-bottom: 15px;
+  height: auto;
+  margin: 20px auto 0;
+  overflow: auto;
+  padding: 10px;
+  text-align: center;
 }
 
 #deletedTasks {
-  font-weight: 600;
+  font-weight: 700;
   padding-top: 5px;
   text-align: center;
-  text-decoration: underline;
+  text-decoration: none;
+
 }
-#errormsg {
-  display: none;
+
+::placeholder {
+  color: #b1b1b1;
+  opacity: 1;
 }
+
+#allTasks {
+  overflow: scroll;
+  height: 50vh;
+
+}
+
 @media screen and (max-width: 850px) {
-  #fullPage {
-    display: none;
+  #full {
+    margin: 0px;
+    padding-top: 80px;
+    padding-bottom: 0px;
   }
-  #errormsg {
-    display: flex;
-    font-family: sans-serif;
+
+  #tasksDiv {
+    font-size: 20px;
   }
+
+  #tasksDiv:hover {
+    font-size: 21px;
+  }
+
+  #tasks {
+    font-size: 26px;
+  }
+
+
+}@media screen and (max-width: 600px) {
+#newTask{
+  width: 120px;
+}
 }
