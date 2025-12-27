@@ -63,7 +63,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. npm run build
+2. git add .
+3. git commit -m ""
+4. git push -u origin main
+5. firebase login
+6. firebase init
+7. build folder is your public folder
+8. firebase deploy
 
 ### `npm run build` fails to minify
 
